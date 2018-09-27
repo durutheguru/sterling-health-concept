@@ -19,7 +19,7 @@ public class BaseEntity {
     @NotNull
     @Column(nullable = false)
     @Version
-    private Integer version;
+    private Integer version = 0;
 
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime created;

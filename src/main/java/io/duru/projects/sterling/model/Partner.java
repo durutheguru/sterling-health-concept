@@ -22,13 +22,13 @@ public class Partner extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @NotNull
-    @OneToOne
+    @NotNull(message = "Primary Location is required")
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "location_id")
     private Location primaryLocation;
 
     @NotNull
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "profile_id")
     private PartnerProfile partnerProfile;
 
@@ -43,6 +43,10 @@ public class Partner extends BaseEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "partner")
     private List<Service> services;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "partner")
+    private List<Location> locations;
 
 
     public String getName() {
@@ -67,6 +71,9 @@ public class Partner extends BaseEntity {
 
     public void setPrimaryLocation(Location primaryLocation) {
         this.primaryLocation = primaryLocation;
+        if (this.primaryLocation != null) {
+            this.primaryLocation.setPartner(this);
+        }
     }
 
     public PartnerProfile getPartnerProfile() {
@@ -75,6 +82,9 @@ public class Partner extends BaseEntity {
 
     public void setPartnerProfile(PartnerProfile partnerProfile) {
         this.partnerProfile = partnerProfile;
+        if (this.partnerProfile != null) {
+            this.partnerProfile.setPartner(this);
+        }
     }
 
     public List<Advertisement> getAdvertisements() {
@@ -101,5 +111,12 @@ public class Partner extends BaseEntity {
         this.services = services;
     }
 
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
+    }
 
 }

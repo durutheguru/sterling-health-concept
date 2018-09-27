@@ -1,10 +1,10 @@
 package io.duru.projects.sterling.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,6 +12,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Location extends BaseEntity {
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "partner_id")
+    private Partner partner;
 
     @NotEmpty(message = "Location address is required")
     @Column(nullable = false, length = 200)
@@ -32,6 +37,11 @@ public class Location extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Gps gps;
+
+    @NotNull(message = "Location State is required")
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private State state;
 
 
     public String getAddress() {
@@ -74,5 +84,19 @@ public class Location extends BaseEntity {
         this.gps = gps;
     }
 
+    public State getState() {
+        return state;
+    }
 
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
 }

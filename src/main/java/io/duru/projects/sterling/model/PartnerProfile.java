@@ -1,9 +1,8 @@
 package io.duru.projects.sterling.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -12,6 +11,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class PartnerProfile extends BaseEntity {
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "partner_id")
+    private Partner partner;
 
     @NotEmpty(message = "Partner Website is required")
     @Column(nullable = false, length = 250)
@@ -42,8 +46,17 @@ public class PartnerProfile extends BaseEntity {
     @Column(nullable = false)
     private Integer viewCount = 0;
 
+    @Column(nullable = false)
     private Integer likeCount = 0;
 
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
 
     public String getWebsite() {
         return website;
