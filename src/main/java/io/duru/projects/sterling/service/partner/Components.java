@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * created by dduru on 27/09/2018
  */
 @Component
-public class ComponentAggregator {
+public class Components {
 
     @Autowired
     public PartnerRepository partnerRepository;
@@ -23,5 +23,8 @@ public class ComponentAggregator {
 
     @Autowired
     public LocationRepository locationRepository;
+
+    @Autowired
+    public PartnerFileUploadExtractor fileUploadExtractor;
 
 }
