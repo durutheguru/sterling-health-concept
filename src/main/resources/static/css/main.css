@@ -1,0 +1,46 @@
+@import "bootstrap.min.css";
+@import "bootstrap-reset.css";
+@import "font-awesome.css";
+@import "jquery.easy-pie-chart.css";
+@import "owl.carousel.css";
+@import "slidebars.css";
+@import "googlefont.css";
+@import "style.css";
+@import "style-responsive.css";
+@import "style-responsive.css";
+@import "style-responsive.css";
+
+
+.bigger-text-2 {
+    font-size : 2em;
+}
+
+
+.bigger-text-1-5 {
+    font-size : 1.5em;
+}
+
+
+.h-padding-15 {
+    padding-left : 15px;
+    padding-right : 15px;
+}
+
+
+.info-msg, .panel-main-title {
+    color : #4CA2ED;
+}
+
+
+.panel-info-item {
+    display: block;
+    margin-top : 2px;
+    margin-bottom : 6px;
+}
+
+
+.max-component {
+    width: 100%;
+    height: 100%;
+}
+

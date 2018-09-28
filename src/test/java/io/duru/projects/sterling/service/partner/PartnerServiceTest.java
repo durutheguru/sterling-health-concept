@@ -30,8 +30,8 @@ public class PartnerServiceTest {
     private Partner buildNewPartner() {
         Partner partner = new Partner();
 
-        partner.setName("New Partner");
-        partner.setDescription("Basic New Partner");
+        partner.setName("Big Partner");
+        partner.setDescription("Big New Partner");
         partner.setPrimaryLocation(buildNewLocation());
         partner.setPartnerProfile(buildNewPartnerProfile());
 
@@ -42,9 +42,9 @@ public class PartnerServiceTest {
     private Location buildNewLocation() {
         Location location = new Location();
 
-        location.setAddress("12, Middleware Street, Lagos");
-        location.setEmail("partner@gmail.com");
-        location.setPhoneNumber1("0813893343");
+        location.setAddress("19, Alpha Inclad Street, Ijebu");
+        location.setEmail("big_partner@gmail.com");
+        location.setPhoneNumber1("09874791784");
         location.setState(buildNewState());
 
         return location;
@@ -63,11 +63,13 @@ public class PartnerServiceTest {
     private PartnerProfile buildNewPartnerProfile() {
         PartnerProfile partnerProfile = new PartnerProfile();
 
-        partnerProfile.setWebsite("http://partner.com");
-        partnerProfile.setFacebookLink("http://www.facebook.com/partner1");
-        partnerProfile.setTwitterLink("http://www.twitter.com/partner1");
+        partnerProfile.setWebsite("http://big_partner.com");
+        partnerProfile.setFacebookLink("http://www.facebook.com/big_partner1");
+        partnerProfile.setTwitterLink("http://www.twitter.com/big_partner1");
+        partnerProfile.setLinkedInLink("http://www.linkedin.com/big_partner1");
 
         return partnerProfile;
     }
+
 
 }
