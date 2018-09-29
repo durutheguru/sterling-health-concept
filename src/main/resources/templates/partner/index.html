@@ -273,7 +273,7 @@
     <!--main content start-->
     <section id="main-content">
 
-        <div id="partner-upload-container" class="row h-padding-15" style="margin-left:10px;margin-right:10px;">
+        <div id="partner-upload-container" class="row h-padding-15" style="margin-left:5px;margin-right:5px;">
             <div class="alert alert-success alert-block fade in shadowed">
                 <div class="row h-padding-15">
                     <div class="col-md-4">
@@ -333,7 +333,7 @@
                         <div class="panel-body">
                             <div class="media">
                                 <a class="pull-left" href="people_directory.html#">
-                                    <img class="thumb media-object" src="img/photos/user1.png" alt="">
+                                    <img class="thumb media-object" src="img/photos/web_logo_default.png" alt="">
                                 </a>
 
                                 <div class="media-body" style="overflow:visible;">
@@ -367,6 +367,14 @@
                                         <div class="col-md-10" style="padding-left:2px;">
                                             <span v-text="partner.primaryLocation.phoneNumber1"></span>
                                         </div>
+                                    </div>
+
+                                    <div class="pull-right" v-if="partner.partnerProfile.website"  style="position:relative;top:12px">
+                                        <a title="" data-placement="top" data-toggle="tooltip"
+                                           class="btn btn-white tooltips" :href="`${partner.partnerProfile.website}`"
+                                           data-original-title="Visit Website" target="_blank">
+                                            <i class="fa fa-globe"></i>
+                                        </a>
                                     </div>
 
                                     <ul class="social-links" style="position:relative;top:15px">
