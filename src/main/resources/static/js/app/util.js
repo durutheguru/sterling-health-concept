@@ -5,13 +5,20 @@
         logInfo: function (msg) {
             if (_$$.env.debug) {
                 console.log(msg);
+                _$$.util.logStack();
             }
         },
 
         logError: function (msg) {
             if (_$$.env.debug) {
                 console.error(msg);
+                _$$.util.logStack();
             }
+        },
+
+        logStack: function () {
+            var e = new Error("Stack");
+            console.log(e.stack);
         },
 
         isValidString: function (str, empty) {
@@ -66,7 +73,7 @@
             return parent;
         },
 
-        errorSanitize : function(msg) {
+        errorSanitize: function (msg) {
             if (msg.indexOf("java.") > -1) {
                 return "Unknown Error";
             }
@@ -77,6 +84,22 @@
         extractError: function (errorResponse) {
             var errorMsg = _$$.util.deepGet(errorResponse, "response.data.message");
             return _$$.util.isValidString(errorMsg) ? _$$.util.errorSanitize(errorMsg) : "Unknown Error";
+        },
+
+        merge: function (src, dest) {
+            if (typeof src != "object") {
+                throw new Error("Source must be Javascript objects");
+            }
+
+            if (typeof dest != "object") {
+                dest = {};
+            }
+
+            for (var i in src) {
+                dest[i] = src[i];
+            }
+
+            return dest;
         }
     }
 

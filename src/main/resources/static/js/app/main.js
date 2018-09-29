@@ -1,6 +1,7 @@
 
 var rootObject = {
-    services:{}
+    services:{},
+    components : {}
 };
 
 var selectedConfigName = "DEV";
@@ -36,6 +37,7 @@ var selectedConfigName = "DEV";
             selectedConfig = configs[i];
         }
     }
+
 
     rootObject.env = selectedConfig;
 
