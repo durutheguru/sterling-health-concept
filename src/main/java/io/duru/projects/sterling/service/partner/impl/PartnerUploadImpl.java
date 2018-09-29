@@ -4,6 +4,7 @@ import io.duru.projects.sterling.apimodel.UploadStatus;
 import io.duru.projects.sterling.apimodel.partner.PartnerUploadResult;
 import io.duru.projects.sterling.apimodel.partner.UploadedPartner;
 import io.duru.projects.sterling.exception.ApplicationException;
+import io.duru.projects.sterling.exception.InvalidFileUploadException;
 import io.duru.projects.sterling.exception.PartnerSetupException;
 import io.duru.projects.sterling.service.partner.Components;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -42,15 +43,18 @@ public class PartnerUploadImpl {
 
             return new PartnerUploadResult(uploadedPartners);
         }
-        catch (IOException | InvalidFormatException e) {
+        catch (IOException e) {
             throw new PartnerSetupException("Unable to extract uploaded file", e);
+        }
+        catch (InvalidFileUploadException e) {
+            throw new PartnerSetupException(e.getMessage(), e);
         }
     }
 
 
     private void uploadPartner(UploadedPartner uploadedPartner) {
         try {
-            components.partnerRepository.save(uploadedPartner.getPartner());
+            PartnerSetupImpl.init(uploadedPartner.getPartner(), components).execute();
 
             uploadedPartner.setUploadStatus(UploadStatus.SUCCESSFUL);
             uploadedPartner.setUploadMessage("Setup was successful");

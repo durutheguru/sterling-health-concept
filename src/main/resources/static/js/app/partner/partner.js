@@ -1,38 +1,130 @@
-(function(_$$) {
+(function (_$$) {
 
-     new Vue({
-        el : "#partner-list-container",
+    _$$.services.partnerService = {
+
+        loadPartners : function(successHandler, errorHandler) {
+            axios
+                .get(_$$.env.url + "/api/v1/partner")
+                .then(successHandler)
+                .catch(errorHandler);
+        },
+
+        uploadPartners : function(formData, successHandler, errorHandler) {
+            axios
+                .post(
+                    _$$.env.url + "/api/v1/partner/upload", formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                .then(successHandler)
+                .catch(errorHandler);
+        }
+
+    };
+
+    new Vue({
+        el: "#partner-list-container",
+
+        data: {
+            partners: [],
+            partnersLoading: false
+        },
+
+        methods: {
+
+            loadPartners: function () {
+                var self = this;
+                self.partnersLoading = true;
+
+                _$$.services.partnerService.loadPartners(
+                    function (response) {
+                        self.partnersLoading = false;
+                        self.partners = response.data;
+                    },
+
+                    function (error) {
+                        self.partnersLoading = false;
+                        _$$.util.logInfo(error.message);
+                    }
+                );
+            },
+
+            managedString: _$$.util.managedString
+
+        },
+
+        mounted: function () {
+            this.loadPartners();
+        }
+    });
+
+    new Vue({
+        el : "#partner-upload-container",
 
         data : {
-            partners : [],
-            partnersLoading : false
+            file : '',
+            fileUploading : false,
+            uploadError : '',
+            uploadSuccess : false
         },
 
         methods : {
 
-            loadPartners : function() {
-                var self = this;
-                self.partnersLoading = true;
-
-                axios
-                    .get(_$$.env.url + "/api/v1/partner")
-                    .then(function(response) {
-                        self.partnersLoading = false;
-                        self.partners = response.data;
-                    })
-                    .catch(function(error) {
-                        self.partnersLoading = false;
-                        _$$.util.logInfo(error.message);
-                    });
+            selectFile : function() {
+                _$$.util.logInfo("Selected File...");
+                this.file = this.$refs.file.files[0];
             },
 
-            managedString : _$$.util.managedString
+            preUpload : function() {
+                this.uploadError = '';
+                this.uploadSuccess = false;
+                this.fileUploading = true;
+            },
 
-        },
+            successfulUpload : function(response) {
+                this.fileUploading = false;
+                this.uploadSuccess = true;
+                _$$.util.logInfo(JSON.stringify(response));
 
-        mounted : function() {
-            this.loadPartners();
+                setTimeout(function() {
+                    location.reload(true);
+                }, 3000);
+            },
+
+            failedUpload : function(error) {
+                this.fileUploading = false;
+                this.uploadError = _$$.util.extractError(error);
+                _$$.util.logError("Upload Error: " + this.uploadError);
+            },
+
+            doUpload : function() {
+                var self = this;
+
+                var formData = new FormData();
+                formData.append("file", this.file);
+
+                self.preUpload();
+
+                _$$.services.partnerService.uploadPartners(
+                    formData,
+
+                    function(response) {
+                        self.successfulUpload(response);
+                    },
+
+                    function(error) {
+                        self.failedUpload(error);
+                    }
+                );
+            }
+
         }
     });
+
+
+    var x = 2;
 
 })(rootObject);

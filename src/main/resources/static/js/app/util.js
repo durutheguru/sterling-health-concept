@@ -1,10 +1,16 @@
-(function(_$$) {
+(function (_$$) {
 
     _$$.util = {
 
-        logInfo : function(msg){
+        logInfo: function (msg) {
             if (_$$.env.debug) {
                 console.log(msg);
+            }
+        },
+
+        logError: function (msg) {
+            if (_$$.env.debug) {
+                console.error(msg);
             }
         },
 
@@ -43,8 +49,35 @@
             else {
                 return str.substring(0, maxlength) + "...";
             }
-        }
+        },
 
-    };
+        deepGet: function (parent, path) {
+            path = path.split('.');
+
+            for (var k = 0, kLen = path.length; k < kLen; k++) {
+
+                if (parent.hasOwnProperty(path[k])) {
+                    parent = parent[path[k]];
+
+                } else {
+                    return; // undefined? null? error?
+                }
+            }
+            return parent;
+        },
+
+        errorSanitize : function(msg) {
+            if (msg.indexOf("java.") > -1) {
+                return "Unknown Error";
+            }
+
+            return msg;
+        },
+
+        extractError: function (errorResponse) {
+            var errorMsg = _$$.util.deepGet(errorResponse, "response.data.message");
+            return _$$.util.isValidString(errorMsg) ? _$$.util.errorSanitize(errorMsg) : "Unknown Error";
+        }
+    }
 
 })(rootObject);

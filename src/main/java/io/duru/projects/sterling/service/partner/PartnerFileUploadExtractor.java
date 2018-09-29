@@ -2,6 +2,7 @@ package io.duru.projects.sterling.service.partner;
 
 import com.google.common.base.Strings;
 import io.duru.projects.sterling.apimodel.partner.UploadedPartner;
+import io.duru.projects.sterling.exception.InvalidFileUploadException;
 import io.duru.projects.sterling.model.Location;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.model.PartnerProfile;
@@ -22,25 +23,36 @@ import java.util.*;
 public class PartnerFileUploadExtractor {
 
 
-    public List<UploadedPartner> extractPartners(InputStream inputStream) throws IOException, InvalidFormatException {
-        Workbook workbook = WorkbookFactory.create(inputStream);
+    public List<UploadedPartner> extractPartners(InputStream inputStream) throws IOException, InvalidFileUploadException {
+        Workbook workbook = createWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
 
         return extractPartnersFromSheet(sheet);
     }
 
 
-    private List<UploadedPartner> extractPartnersFromSheet(Sheet sheet) {
+    private Workbook createWorkbook(InputStream inputStream) throws IOException, InvalidFileUploadException{
+        try {
+            return WorkbookFactory.create(inputStream);
+        }
+        catch (InvalidFormatException e) {
+            throw new InvalidFileUploadException("Unable to extract uploaded file.");
+        }
+    }
+
+
+    private List<UploadedPartner> extractPartnersFromSheet(Sheet sheet) throws InvalidFileUploadException {
         List<UploadedPartner> uploadedPartners = new ArrayList<>();
 
         int rowIndex = 0;
 
         Row headerRow = sheet.getRow(rowIndex++);
         HashMap<FileHeader, Integer> headerMap = readFileHeaderMap(headerRow);
+        verifyHeaderMap(headerMap);
 
         String[] rowData;
         Optional<UploadedPartner> uploadedPartner;
-        for (Row row = sheet.getRow(rowIndex); row != null; row = sheet.getRow(rowIndex++)) {
+        for (Row row = sheet.getRow(rowIndex); row != null; row = sheet.getRow(++rowIndex)) {
             rowData = readRowData(row, headerMap.size());
             uploadedPartner = convertToUploadedPartner(row.getRowNum()+1, rowData, headerMap);
 
@@ -50,6 +62,12 @@ public class PartnerFileUploadExtractor {
         }
 
         return uploadedPartners;
+    }
+
+    private void verifyHeaderMap(HashMap<FileHeader, Integer> headerMap) throws InvalidFileUploadException {
+        if (headerMap.size() != FileHeader.values().length) {
+            throw new InvalidFileUploadException("Invalid File Upload. Please check the uploaded file.");
+        }
     }
 
 
@@ -109,7 +127,7 @@ public class PartnerFileUploadExtractor {
         int index = 0;
         while (cellIterator.hasNext()) {
             cell = cellIterator.next();
-            cellValue = cell.getStringCellValue();
+            cellValue = extractStringValueFromCell(cell);
 
             for (FileHeader header : FileHeader.values()) {
                 if (cellValue.equalsIgnoreCase(header.getValue())) {
@@ -121,6 +139,22 @@ public class PartnerFileUploadExtractor {
         }
 
         return headerMap;
+    }
+
+    private String extractStringValueFromCell(Cell cell) {
+        String value;
+
+        if (cell.getCellTypeEnum() == CellType.NUMERIC) {
+            value = String.valueOf(cell.getNumericCellValue());
+        }
+        else if (cell.getCellTypeEnum() == CellType.STRING) {
+            value = cell.getStringCellValue();
+        }
+        else {
+            value = "";
+        }
+
+        return value;
     }
 
 

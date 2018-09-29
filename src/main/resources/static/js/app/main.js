@@ -1,5 +1,8 @@
 
-var rootObject = {};
+var rootObject = {
+    services:{}
+};
+
 var selectedConfigName = "DEV";
 
 

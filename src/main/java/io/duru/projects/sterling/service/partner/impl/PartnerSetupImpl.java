@@ -49,7 +49,7 @@ public class PartnerSetupImpl {
 
     private void appendPartnerState() throws PartnerSetupException {
         State state = partner.getPrimaryLocation().getState();
-        Optional<State> existingState = components.stateRepository.findByName(state.getName());
+        Optional<State> existingState = components.stateRepository.findByNameContaining(state.getName());
 
         if (existingState.isPresent()) {
             partner.getPrimaryLocation().setState(existingState.get());

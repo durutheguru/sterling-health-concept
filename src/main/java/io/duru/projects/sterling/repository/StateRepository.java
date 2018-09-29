@@ -14,4 +14,6 @@ public interface StateRepository extends JpaRepository<State, Long> {
 
     Optional<State> findByName(String name);
 
+    Optional<State> findByNameContaining(String name);
+
 }
