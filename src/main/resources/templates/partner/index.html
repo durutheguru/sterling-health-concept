@@ -298,7 +298,7 @@
                             <input type="file" id="file" ref="file" v-on:change="selectFile()"/>
                         </span>
 
-                            <button class="btn btn-primary" v-on:click="doUpload()">
+                            <button class="btn btn-primary" v-on:click="doUpload()" :disabled="disabled()">
                                 Upload <i class="fa fa-cloud-upload"></i>
                             </button>
                         </div>

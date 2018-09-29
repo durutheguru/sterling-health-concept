@@ -71,7 +71,7 @@
             el : "#partner-upload-container",
 
             data : {
-                file : '',
+                file : null,
                 fileUploading : false,
                 uploadError : '',
                 uploadSuccess : false,
@@ -83,6 +83,10 @@
                 selectFile : function() {
                     _$$.util.logInfo("Selected File...");
                     this.file = this.$refs.file.files[0];
+                },
+
+                disabled : function() {
+                    return this.file == null;
                 },
 
                 preUpload : function() {
