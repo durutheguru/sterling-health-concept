@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 /**
  * created by dduru on 27/09/2018
  */
-public class PartnerUploadResult {
+public class UploadResult {
 
     private List<UploadedPartner> successfulUploads;
 
     private List<UploadedPartner> failedUploads;
 
 
-    public PartnerUploadResult(List<UploadedPartner> uploadedPartners) {
+    public UploadResult(List<UploadedPartner> uploadedPartners) {
         init(uploadedPartners);
     }
 

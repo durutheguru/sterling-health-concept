@@ -1,6 +1,7 @@
 package io.duru.projects.sterling.controller.api.partner;
 
-import io.duru.projects.sterling.apimodel.partner.PartnerUploadResult;
+import io.duru.projects.sterling.apimodel.partner.SearchResult;
+import io.duru.projects.sterling.apimodel.partner.UploadResult;
 import io.duru.projects.sterling.exception.ApplicationException;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.service.partner.PartnerService;
@@ -39,9 +40,15 @@ public class PartnerApiController {
 
 
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
-    public PartnerUploadResult uploadPartners(
+    public UploadResult uploadPartners(
             @RequestParam("file") MultipartFile multipartFile) throws ApplicationException {
         return partnerService.uploadPartners(multipartFile);
+    }
+
+
+    @RequestMapping(path = "/search", method = RequestMethod.GET)
+    public SearchResult searchPartners(@RequestParam("key") String key) {
+        return partnerService.search(key);
     }
 
 

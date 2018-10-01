@@ -11,21 +11,21 @@ import java.util.Optional;
 /**
  * created by dduru on 27/09/2018
  */
-public class PartnerSetupImpl {
+public class SetupImpl {
 
     private Partner partner;
 
     private Components components;
 
 
-    private PartnerSetupImpl(Partner partner, Components components) {
+    private SetupImpl(Partner partner, Components components) {
         this.partner = partner;
         this.components = components;
     }
 
 
-    public static PartnerSetupImpl init(Partner partner, Components components) {
-        return new PartnerSetupImpl(partner, components);
+    public static SetupImpl init(Partner partner, Components components) {
+        return new SetupImpl(partner, components);
     }
 
 

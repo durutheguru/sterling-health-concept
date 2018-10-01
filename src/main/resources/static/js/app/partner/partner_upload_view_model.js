@@ -1,72 +1,7 @@
 (function (_$$) {
 
-    _$$.util.merge({
-        partnerService : {
 
-            loadPartners : function(successHandler, errorHandler) {
-                axios
-                    .get(_$$.env.url + "/api/v1/partner")
-                    .then(successHandler)
-                    .catch(errorHandler);
-            },
-
-            uploadPartners : function(formData, successHandler, errorHandler) {
-                axios
-                    .post(
-                        _$$.env.url + "/api/v1/partner/upload", formData,
-                        {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
-                        }
-                    )
-                    .then(successHandler)
-                    .catch(errorHandler);
-            }
-
-        }
-    }, _$$.services);
-
-
-    _$$.util.merge({
-        partnerListViewModel : new Vue({
-            el: "#partner-list-container",
-
-            data: {
-                partners: [],
-                partnersLoading: false
-            },
-
-            methods: {
-
-                loadPartners: function () {
-                    var self = this;
-                    self.partnersLoading = true;
-
-                    _$$.services.partnerService.loadPartners(
-                        function (response) {
-                            self.partnersLoading = false;
-                            self.partners = response.data;
-                            //self.$root.$emit('partnersLoaded', self.partners);
-                            _$$.components.partnerUploadViewModel.setPartnerCount(self.partners.length);
-                        },
-
-                        function (error) {
-                            self.partnersLoading = false;
-                            _$$.util.logError(error.message);
-                        }
-                    );
-                },
-
-                managedString: _$$.util.managedString
-
-            },
-
-            mounted: function () {
-                this.loadPartners();
-            }
-        }),
-
+    _$$.util.registerComponents({
         partnerUploadViewModel : new Vue({
             el : "#partner-upload-container",
 
@@ -146,8 +81,7 @@
                 });
             }
         })
-    }, _$$.components);
-
+    });
 
 
 })(rootObject);

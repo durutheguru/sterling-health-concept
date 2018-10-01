@@ -1,11 +1,14 @@
 package io.duru.projects.sterling.service.partner;
 
-import io.duru.projects.sterling.apimodel.partner.PartnerUploadResult;
+import io.duru.projects.sterling.apimodel.partner.SearchResult;
+import io.duru.projects.sterling.apimodel.partner.UploadResult;
 import io.duru.projects.sterling.exception.PartnerSetupException;
 import io.duru.projects.sterling.model.Partner;
-import io.duru.projects.sterling.service.partner.impl.PartnerSetupImpl;
-import io.duru.projects.sterling.service.partner.impl.PartnerUploadImpl;
+import io.duru.projects.sterling.service.partner.impl.SearchImpl;
+import io.duru.projects.sterling.service.partner.impl.SetupImpl;
+import io.duru.projects.sterling.service.partner.impl.UploadImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,17 +25,22 @@ public class PartnerService {
 
 
     public Partner savePartner(Partner partner) throws PartnerSetupException {
-        return PartnerSetupImpl.init(partner, components).execute();
+        return SetupImpl.init(partner, components).execute();
     }
 
 
     public List<Partner> getPartners() {
-        return components.partnerRepository.findAll();
+        return components.partnerRepository.findAll(new Sort(Sort.Direction.DESC, "id"));
     }
 
 
-    public PartnerUploadResult uploadPartners(MultipartFile multipartFile) throws PartnerSetupException {
-        return PartnerUploadImpl.init(multipartFile, components).execute();
+    public SearchResult search(String key) {
+        return SearchImpl.init(key, components).execute();
+    }
+
+
+    public UploadResult uploadPartners(MultipartFile multipartFile) throws PartnerSetupException {
+        return UploadImpl.init(multipartFile, components).execute();
     }
 
 

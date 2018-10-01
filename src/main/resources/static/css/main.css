@@ -20,6 +20,10 @@
     font-size : 1.5em;
 }
 
+.h-padding-6 {
+    padding-left : 6px;
+    padding-right : 6px;
+}
 
 .h-padding-15 {
     padding-left : 15px;
@@ -51,6 +55,17 @@
 }
 
 
+.v-margin-15 {
+    margin-top : 15px;
+    margin-bottom : 15px;
+}
+
+.search-group-container {
+    margin-top : 5px;
+    margin-bottom : 28px;
+}
+
+
 .left-bordered-green {
     border-left : 1px solid #9DA;
 }
@@ -64,6 +79,9 @@
     color : #EF6F66;
 }
 
+.grey {
+    color : #AAA;
+}
 
 .shadowed {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

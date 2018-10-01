@@ -2,23 +2,24 @@
 
     _$$.util = {
 
-        logInfo: function (msg) {
+        logInfo: function (msg, stack) {
             if (_$$.env.debug) {
                 console.log(msg);
-                _$$.util.logStack();
+                _$$.util.logStack(stack);
             }
         },
 
-        logError: function (msg) {
+        logError: function (msg, stack) {
             if (_$$.env.debug) {
                 console.error(msg);
-                _$$.util.logStack();
+                _$$.util.logStack(stack);
             }
         },
 
-        logStack: function () {
-            var e = new Error("Stack");
-            console.log(e.stack);
+        logStack: function (stack) {
+            if (stack) {
+                console.log(new Error("").stack);
+            }
         },
 
         isValidString: function (str, empty) {
@@ -86,6 +87,14 @@
             return _$$.util.isValidString(errorMsg) ? _$$.util.errorSanitize(errorMsg) : "Unknown Error";
         },
 
+        quantity: function (number, item, full_string) {
+            if (number < 0) {
+                return item;
+            }
+
+            return (full_string ? (number > 0 ? number : "No") + " " : "") + item + ((number <= 1) ? "" : "s");
+        },
+
         merge: function (src, dest) {
             if (typeof src != "object") {
                 throw new Error("Source must be Javascript objects");
@@ -100,7 +109,24 @@
             }
 
             return dest;
+        },
+
+        constant : function(key) {
+            return _$$.util.deepGet(_$$.constants, key);
+        },
+
+        registerServices : function(request) {
+            _$$.util.merge(request, _$$.services);
+        },
+
+        registerComponents : function(request) {
+            _$$.util.merge(request, _$$.components);
+        },
+
+        registerConstants : function(request) {
+            _$$.util.merge(request, _$$.constants);
         }
+
     }
 
 })(rootObject);

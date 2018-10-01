@@ -4,6 +4,7 @@ import io.duru.projects.sterling.model.Partner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,6 +15,12 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
 
 
     Optional<Partner> findByName(String name);
+
+
+    List<Partner> findByNameContaining(String key);
+
+
+    List<Partner> findByDescriptionContaining(String key);
 
 
 }

@@ -1,9 +1,13 @@
 
 var rootObject = {
+    vue : new Vue(),
     services:{},
-    components : {}
+    components : {},
+    constants : {}
 };
 
+
+//TODO: load this from injected profile
 var selectedConfigName = "DEV";
 
 

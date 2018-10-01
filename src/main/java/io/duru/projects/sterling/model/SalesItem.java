@@ -16,6 +16,9 @@ public class SalesItem extends BaseEntity {
     @Size(max = 200, message = "Sales Item description is too long")
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    private SalesItemType itemType;
+
     @NotNull
     @ManyToOne
     @JoinColumn(nullable = false, name = "partner_id")
@@ -41,6 +44,15 @@ public class SalesItem extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public SalesItemType getItemType() {
+        return itemType;
+    }
+
+    public SalesItem setItemType(SalesItemType itemType) {
+        this.itemType = itemType;
+        return this;
     }
 
     public Partner getPartner() {
