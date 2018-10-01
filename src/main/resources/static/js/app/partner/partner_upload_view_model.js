@@ -70,7 +70,9 @@
                 setPartnerCount : function(count) {
                     _$$.util.logInfo("Setting Partner Count: " + count);
                     this.partnerCount = count;
-                }
+                },
+
+                quantity : _$$.util.quantity
 
             },
 

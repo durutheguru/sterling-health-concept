@@ -1,23 +1,5 @@
 (function (_$$) {
 
-
-    Vue.component('partner-card', {
-        template : "#partner-card-template",
-        props : {
-            partner : {
-                type : Object,
-                required : true
-            }
-        },
-
-        methods : {
-
-            managedString: _$$.util.managedString
-
-        }
-    });
-
-
     _$$.util.registerComponents({
         partnerListViewModel: new Vue({
             el: "#partner-list-container",
@@ -26,7 +8,9 @@
                 partners: [],
                 partnersLoading: false,
                 searching: false,
-                searchResult: null,
+                searchResult: {
+                    searchResultGroups : []
+                },
                 viewMode: _$$.constants.VIEW_MODE.PARTNER_LIST
             },
 
@@ -96,8 +80,10 @@
                 },
 
                 searchResultsReady : function() {
-                    return this.searchResult != null;
-                }
+                    return this.searchResult != null && this.searchResult.searchResultGroups.length;
+                },
+
+                quantity : _$$.util.quantity
 
             },
 

@@ -284,7 +284,7 @@
                     <div class="value">
                         <h1 class="count4" v-text="partnerCount"></h1>
 
-                        <p>Registered Partners</p>
+                        <p v-text="quantity(partnerCount, 'Registered Partner')"></p>
                     </div>
                 </section>
             </div>
@@ -354,8 +354,7 @@
 
             <div class="row v-margin-15 h-padding-15 h-margin-15" v-if="isViewModeSearch()">
                 <h6 class="grey">
-                    Search Results for '<span v-text="searchResult.key"></span>':
-                    <span v-text="searchResult.count"></span>
+                    <span v-text="quantity(searchResult.count, ' Result', true)"></span> for '<span v-text="searchResult.key"></span>'
                 </h6>
                 <div class="row " v-if="searchResult.searchResultGroups.length">
                     <div class="search-group-container" v-for="group in searchResult.searchResultGroups">
@@ -556,7 +555,7 @@
 
                 <div class="media-body" style="overflow:visible;">
                                     <span class="bigger-text-1-5 panel-main-title"
-                                          v-text="managedString(partner.name, 14)"></span>
+                                          v-text="managedString(partner.name, 20)"></span>
                     <hr/>
 
                     <div class="panel-info-item row">
