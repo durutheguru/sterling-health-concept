@@ -6,7 +6,7 @@
     <meta name="author" content="Julian Duru">
     <meta http-equiv="Cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="timestamp"/>
-    <title>Sterling Health Concept</title>
+    <title>Sterling Health Concept - Partner Listing</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/main.css" rel="stylesheet"/>
@@ -549,13 +549,13 @@
     <div class="panel shadowed-s">
         <div class="panel-body">
             <div class="media">
-                <a class="pull-left" href="people_directory.html#">
-                    <img class="thumb media-object" src="img/photos/web_logo_default.png" alt="">
+                <a style="max-width:175px;width:175px;" class="pull-left" :href="'/partner/' + partner.id">
+                    <img class="thumb media-object img-responsive" :src="getPartnerLogoImage(partner)" alt="">
                 </a>
 
                 <div class="media-body" style="overflow:visible;">
-                                    <span class="bigger-text-1-5 panel-main-title"
-                                          v-text="managedString(partner.name, 20)"></span>
+                    <a  :href="'/partner/' + partner.id" class="bigger-text-1-5 panel-main-title"
+                          v-text="managedString(partner.name, 20)"></a>
                     <hr/>
 
                     <div class="panel-info-item row">

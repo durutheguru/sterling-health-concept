@@ -63,12 +63,11 @@
             path = path.split('.');
 
             for (var k = 0, kLen = path.length; k < kLen; k++) {
-
-                if (parent.hasOwnProperty(path[k])) {
+                if (parent != null && parent.hasOwnProperty(path[k])) {
                     parent = parent[path[k]];
-
-                } else {
-                    return; // undefined? null? error?
+                }
+                else {
+                    return null;
                 }
             }
             return parent;

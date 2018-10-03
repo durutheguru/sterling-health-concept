@@ -84,7 +84,6 @@
                 },
 
                 quantity : _$$.util.quantity
-
             },
 
             mounted: function () {

@@ -12,7 +12,9 @@
 
         methods: {
 
-            managedString: _$$.util.managedString
+            managedString: _$$.util.managedString,
+
+            getPartnerLogoImage : _$$.services.partnerService.getPartnerLogoImage
 
         }
     });

@@ -30,6 +30,15 @@
                 )
                     .then(successHandler)
                     .catch(errorHandler);
+            },
+
+            getPartnerLogoImage : function(partner) {
+                var logoUID = _$$.util.deepGet(partner, "partnerProfile.logo1.uid");
+                if (logoUID == null) {
+                    return _$$.constants.RESOURCES.DEFAULT_LOGO_PATH;
+                }
+
+                return _$$.constants.RESOURCES.IMAGE_URL_ROOT + "/" + logoUID;
             }
 
         }

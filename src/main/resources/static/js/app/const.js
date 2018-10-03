@@ -13,6 +13,14 @@
 
             PARTNER_CLEAR_SEARCH : 'partner.search.clear'
 
+        },
+
+        RESOURCES : {
+
+            IMAGE_URL_ROOT : _$$.env.url + "/api/v1/img",
+
+            DEFAULT_LOGO_PATH : "img/photos/web_logo_default.png"
+
         }
 
     });

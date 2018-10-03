@@ -34,6 +34,11 @@ public class PartnerService {
     }
 
 
+    public Partner getPartner(Long id) {
+        return components.partnerRepository.getOne(id);
+    }
+
+
     public SearchResult search(String key) {
         return SearchImpl.init(key, components).execute();
     }
