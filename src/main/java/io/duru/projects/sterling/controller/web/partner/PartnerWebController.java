@@ -1,5 +1,7 @@
 package io.duru.projects.sterling.controller.web.partner;
 
+import io.duru.projects.sterling.apimodel.ApiContext;
+import io.duru.projects.sterling.apimodel.partner.PartnerApiModel;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.service.partner.PartnerService;
 import io.duru.projects.sterling.util.AppLogger;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PartnerWebController {
 
     @Autowired
+    private ApiContext context;
+
+    @Autowired
     private PartnerService partnerService;
 
 
@@ -32,7 +37,7 @@ public class PartnerWebController {
         Partner partner = partnerService.getPartner(partnerId);
 
         if (partner != null) {
-            model.addAttribute("partner", partner);
+            model.addAttribute("partner", new PartnerApiModel(partner, context));
             return "partner/details";
         }
 

@@ -2345,7 +2345,7 @@ ul.inbox-pagination li {
 /*profile*/
 
 .profile-nav .user-heading {
-    background: #ff766c;
+    background: #ffF;
     color: #fff;
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
@@ -2356,7 +2356,6 @@ ul.inbox-pagination li {
 .profile-nav .user-heading.round a  {
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    border: 10px solid rgba(255,255,255,0.3);
     display: inline-block;
 }
 
@@ -2450,6 +2449,12 @@ ul.inbox-pagination li {
     font-weight: 300;
 }
 
+.bio-graph-heading-fixed-size {
+    min-height: 112px;
+    max-height: 112px;
+    overflow: hidden;
+}
+
 .bio-graph-info {
     color: #89817e;
 }
@@ -2468,7 +2473,7 @@ ul.inbox-pagination li {
 }
 
 .bio-row p span {
-    width: 100px;
+    width: 250px;
     display: inline-block;
 }
 

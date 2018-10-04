@@ -32,6 +32,9 @@ public class Partner extends BaseEntity {
     @JoinColumn(nullable = false, name = "profile_id")
     private PartnerProfile partnerProfile;
 
+    @Enumerated(EnumType.STRING)
+    private BusinessType businessType;
+
     @JsonIgnore
     @OneToMany(mappedBy = "partner")
     private List<Advertisement> advertisements;
@@ -85,6 +88,15 @@ public class Partner extends BaseEntity {
         if (this.partnerProfile != null) {
             this.partnerProfile.setPartner(this);
         }
+    }
+
+    public BusinessType getBusinessType() {
+        return businessType;
+    }
+
+    public Partner setBusinessType(BusinessType businessType) {
+        this.businessType = businessType;
+        return this;
     }
 
     public List<Advertisement> getAdvertisements() {

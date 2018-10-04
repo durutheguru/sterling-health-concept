@@ -55,10 +55,16 @@
 }
 
 
+.centered {
+    text-align: center;
+}
+
+
 .v-margin-15 {
     margin-top : 15px;
     margin-bottom : 15px;
 }
+
 
 .search-group-container {
     margin-top : 5px;
@@ -71,7 +77,7 @@
 }
 
 .bottom-bordered-grey {
-    border-bottom : 1px solid #DDF;
+    border-bottom : 1px solid #DDD;
 }
 
 
@@ -91,3 +97,7 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
+
+.main-partner-contact-container {
+    min-height: 327px;
+}

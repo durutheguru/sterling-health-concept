@@ -34,7 +34,8 @@ gulp.task('compress-partner', function() {
         'js/app/partner/partner_search_input.js',
         'js/app/partner/partner_card_template.js',
         'js/app/partner/partner_list_view_model.js',
-        'js/app/partner/partner_upload_view_model.js'
+        'js/app/partner/partner_upload_view_model.js',
+        'js/app/partner/partner_profile_container.js'
         ]))
         .pipe(concat('app.min.js'))
         .pipe(uglify())
