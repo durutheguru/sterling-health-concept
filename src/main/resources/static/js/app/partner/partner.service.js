@@ -21,13 +21,13 @@
             uploadPartners : function(formData, successHandler, errorHandler) {
                 axios
                     .post(
-                    _$$.env.url + "/api/v1/partner/upload", formData,
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
+                        _$$.env.url + "/api/v1/partner/upload", formData,
+                        {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
                         }
-                    }
-                )
+                    )
                     .then(successHandler)
                     .catch(errorHandler);
             },
@@ -39,6 +39,15 @@
                 }
 
                 return _$$.constants.RESOURCES.IMAGE_URL_ROOT + "/" + logoUID;
+            },
+
+            updatePartner : function(partner, successHandler, errorHandler) {
+                axios
+                    .put(
+                    _$$.env.url + "/api/v1/partner", partner
+                    )
+                    .then(successHandler)
+                    .catch(errorHandler)
             }
 
         }

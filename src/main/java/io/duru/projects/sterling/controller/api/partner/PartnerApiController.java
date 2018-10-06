@@ -52,4 +52,10 @@ public class PartnerApiController {
     }
 
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public Partner updatePartner(@RequestBody Partner partner) throws ApplicationException {
+        return partnerService.savePartner(partner);
+    }
+
+
 }

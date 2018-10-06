@@ -7,6 +7,7 @@ import io.duru.projects.sterling.util.jpa.ValidatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -19,22 +20,16 @@ public class PartnerValidator {
     private PartnerRepository partnerRepository;
 
 
-    public void validateNewPartner(Partner partner) throws InvalidEntityException {
+    public void validatePartner(Partner partner) throws InvalidEntityException {
         ValidatorUtil.validate(partner);
-
         validateNameAvailable(partner);
-    }
-
-
-    public void validateUpdatedPartner(Partner partner) throws InvalidEntityException {
-
     }
 
 
     private void validateNameAvailable(Partner partner) throws InvalidEntityException {
         Optional<Partner> existingPartner = partnerRepository.findByName(partner.getName());
 
-        if (existingPartner.isPresent()) {
+        if (existingPartner.isPresent() && !Objects.equals(existingPartner.get().getId(), partner.getId())) {
             throw new InvalidEntityException(String.format("Partner Name '%s' already in use", partner.getName()));
         }
     }

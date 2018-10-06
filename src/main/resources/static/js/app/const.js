@@ -11,7 +11,9 @@
 
             PARTNER_SEARCH : 'partner.search',
 
-            PARTNER_CLEAR_SEARCH : 'partner.search.clear'
+            PARTNER_CLEAR_SEARCH : 'partner.search.clear',
+
+            PARTNER_UPDATE_RESULT_MODAL : 'partner.update.modal.data'
 
         },
 

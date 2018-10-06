@@ -39,7 +39,7 @@ public class SetupImpl {
 
     private void validate() throws PartnerSetupException {
         try {
-            components.partnerValidator.validateNewPartner(partner);
+            components.partnerValidator.validatePartner(partner);
         }
         catch (InvalidEntityException e) {
             throw new PartnerSetupException(e.getMessage());

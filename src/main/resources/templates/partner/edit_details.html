@@ -11,10 +11,11 @@
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltips and media queries -->
     <!--[if lt IE 9]>
     <script th:src="@{/js/html5shiv.js}"></script>
     <script th:src="@{/js/respond.min.js}"></script>
+
     <![endif]-->
 
     <script th:inline="javascript">
@@ -24,7 +25,6 @@
         };
         /*]]>*/
     </script>
-
 
 </head>
 
@@ -285,79 +285,65 @@
     <!--main content start-->
     <section id="main-content">
 
-        <div class="row h-padding-15" id="partner-profile-container" th:object="${partner}">
-            <aside class="profile-nav col-lg-3">
+        <div class="row h-padding-15">
+            <aside class="profile-info col-lg-8 col-lg-offset-2">
                 <section class="panel shadowed-s">
-                    <div class="user-heading round text-center bottom-bordered-grey">
-                        <div class="">
-                            <a style="max-width:112px;width:112px;margin-left:auto;margin-right:auto;" href="javascript:void(0)">
-                                <img class="thumb media-object img-responsive" th:src="${partner.getLogo1Url()}" alt="">
-                            </a>
-                        </div>
-                        <br/>
+                    <div class="panel-body bio-graph-info v-padding-15 h-padding-15">
+                        <h1 class="info-msg"> Profile Info</h1>
+                        <form id="edit-partner-form" v-if="partnerInjected" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="name" placeholder=""
+                                           v-model="partner.name" />
+                                </div>
+                            </div>
 
-                        <h1 class="info-msg" th:text="*{name}"></h1>
-                        <a class="btn btn-link" th:href="${partner.partnerProfile.website}"
-                           th:text="*{partnerProfile.website}" target="_blank"></a>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Website URL</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com"
+                                           v-model="partner.partnerProfile.website" />
+                                </div>
+                            </div>
 
-                    <ul class="nav nav-pills nav-stacked">
-                        <li>
-                            <a href="profile-edit.html" th:href="'/partner/' + ${partner.id} + '/edit'"> <i class="fa fa-edit"></i> Edit profile</a>
-                        </li>
-                    </ul>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Description</label>
+                                <div class="col-lg-10">
+                                    <textarea name="" id="" class="form-control" cols="30" rows="10"
+                                              v-model="partner.description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Address</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="f-name" placeholder=""
+                                           v-model="partner.primaryLocation.address" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Email</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="l-name" placeholder=""
+                                           v-model="partner.primaryLocation.email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Phone</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="c-name" placeholder=""
+                                           v-model="partner.primaryLocation.phoneNumber1" />
+                                </div>
+                            </div>
 
-                </section>
-            </aside>
-            <aside class="profile-info col-lg-9">
-                <section class="panel main-partner-contact-container shadowed-s">
-                    <div class="bio-graph-heading bio-graph-heading-fixed-size">
-                        <p th:text="*{description}"></p>
-                    </div>
-                    <div class="panel-body bio-graph-info">
-                        <div class="row v-margin-15">
-                            <div class="bio-row col-md-6">
-                                <div class="col-md-4">
-                                    <span>Primary Address </span>:
-                                </div>
-                                <div class="col-md-8">
-                                    <p><span th:text="*{primaryLocation.address}"></span></p>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="button" class="btn btn-success" @click="editPartner()">Save</button>
                                 </div>
                             </div>
-                            <div class="bio-row col-md-6">
-                                <div class="col-md-4">
-                                    <span>Email </span>:
-                                </div>
-                                <div class="col-md-8">
-                                    <p><a th:href="'mailto:' + *{primaryLocation.email}"
-                                          th:text="*{primaryLocation.email}"></a></p>
-                                </div>
-                            </div>
-                            <div class="bio-row col-md-6">
-                                <div class="col-md-4">
-                                    <span>PhoneNumber </span>:
-                                </div>
-                                <div class="col-md-8">
-                                    <p><span th:text="*{primaryLocation.phoneNumber1}"></span></p>
-                                </div>
-                            </div>
-                            <div class="bio-row col-md-6">
-                                <div class="col-md-4">
-                                    <span>State </span>:
-                                </div>
-                                <div class="col-md-8">
-                                    <p><span th:text="*{primaryLocation.state.name}"></span></p>
-                                </div>
-                            </div>
-                            <div class="bio-row col-md-6">
-                                <div class="col-md-4">
-                                    <span>Business Type </span>:
-                                </div>
-                                <div class="col-md-8">
-                                    <p><span th:if="*{businessType != null}" th:text="*{businessType.description}"></span></p>
-                                </div>
-                            </div>
-                        </div>
+
+                            <modal v-if="showModal" :data="modalData" @close="showModal = false" />
+                        </form>
                     </div>
                 </section>
             </aside>
@@ -538,8 +524,41 @@
 </section>
 
 
+<script type="text/x-template" id="modal-template">
+    <transition name="modal">
+        <div class="modal-mask" v-if="data">
+            <div class="modal-wrapper">
+                <div class="modal-container">
+
+                    <div class="modal-header">
+                        <slot name="header">
+                            <span v-text="data.header"></span>
+                        </slot>
+                    </div>
+
+                    <div class="modal-body">
+                        <slot name="body">
+                            <span v-text="data.body"></span>
+                        </slot>
+                    </div>
+
+                    <div class="modal-footer">
+                        <slot name="footer">
+                            <button class="modal-default-button" @click="$emit('close')">
+                                OK
+                            </button>
+                        </slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </transition>
+</script>
+
+
 <!-- js placed at the end of the document so the pages load faster -->
-<script th:src="@{/js/app/partner/app.min.js}"></script>
+<script src="/js/app/partner/app.min.js"></script>
+
 
 <script>
 
