@@ -3,7 +3,7 @@ package io.duru.projects.sterling.exception;
 /**
  * created by dduru on 27/09/2018
  */
-public class PartnerSetupException extends EntitySetupException {
+public class PartnerSetupException extends EntityPersistenceException {
 
 
     public PartnerSetupException(String message) {
