@@ -13,7 +13,7 @@ import java.util.List;
  * created by dduru on 27/09/2018
  */
 @Component
-public class Components {
+public class PartnerComponents {
 
     @Autowired
     public PartnerRepository partnerRepository;

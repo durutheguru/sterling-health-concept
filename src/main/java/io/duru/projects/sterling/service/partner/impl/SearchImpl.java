@@ -3,7 +3,7 @@ package io.duru.projects.sterling.service.partner.impl;
 import com.google.common.base.Strings;
 import io.duru.projects.sterling.apimodel.partner.SearchResult;
 import io.duru.projects.sterling.apimodel.partner.SearchResultGroup;
-import io.duru.projects.sterling.service.partner.Components;
+import io.duru.projects.sterling.service.partner.PartnerComponents;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,16 +15,16 @@ public class SearchImpl {
 
     private String key;
 
-    private Components components;
+    private PartnerComponents components;
 
 
-    private SearchImpl(String key, Components components) {
+    private SearchImpl(String key, PartnerComponents components) {
         this.key = key;
         this.components = components;
     }
 
 
-    public static SearchImpl init(String key, Components components) {
+    public static SearchImpl init(String key, PartnerComponents components) {
         return new SearchImpl(key, components);
     }
 

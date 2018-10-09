@@ -4,7 +4,7 @@ import io.duru.projects.sterling.exception.InvalidEntityException;
 import io.duru.projects.sterling.exception.PartnerSetupException;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.model.State;
-import io.duru.projects.sterling.service.partner.Components;
+import io.duru.projects.sterling.service.partner.PartnerComponents;
 
 import java.util.Optional;
 
@@ -15,16 +15,16 @@ public class SetupImpl {
 
     private Partner partner;
 
-    private Components components;
+    private PartnerComponents components;
 
 
-    private SetupImpl(Partner partner, Components components) {
+    private SetupImpl(Partner partner, PartnerComponents components) {
         this.partner = partner;
         this.components = components;
     }
 
 
-    public static SetupImpl init(Partner partner, Components components) {
+    public static SetupImpl init(Partner partner, PartnerComponents components) {
         return new SetupImpl(partner, components);
     }
 

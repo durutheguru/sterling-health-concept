@@ -5,7 +5,7 @@ import io.duru.projects.sterling.apimodel.partner.UploadResult;
 import io.duru.projects.sterling.apimodel.partner.UploadedPartner;
 import io.duru.projects.sterling.exception.InvalidFileUploadException;
 import io.duru.projects.sterling.exception.PartnerSetupException;
-import io.duru.projects.sterling.service.partner.Components;
+import io.duru.projects.sterling.service.partner.PartnerComponents;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,16 +18,16 @@ public class UploadImpl {
 
     private MultipartFile multipartFile;
 
-    private Components components;
+    private PartnerComponents components;
 
 
-    private UploadImpl(MultipartFile multipartFile, Components components) {
+    private UploadImpl(MultipartFile multipartFile, PartnerComponents components) {
         this.multipartFile = multipartFile;
         this.components = components;
     }
 
 
-    public static UploadImpl init(MultipartFile multipartFile, Components components) {
+    public static UploadImpl init(MultipartFile multipartFile, PartnerComponents components) {
         return new UploadImpl(multipartFile, components);
     }
 

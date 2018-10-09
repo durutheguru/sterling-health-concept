@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * created by dduru on 07/10/2018
  */
 @Component
-public class Components {
+public class FAQComponents {
 
     @Autowired
     public FAQRepository faqRepository;

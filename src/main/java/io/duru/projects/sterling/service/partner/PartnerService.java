@@ -21,7 +21,7 @@ import java.util.List;
 public class PartnerService {
 
     @Autowired
-    private Components components;
+    private PartnerComponents components;
 
 
     public Partner savePartner(Partner partner) throws PartnerSetupException {
