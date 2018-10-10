@@ -20,6 +20,10 @@
     font-size : 1.5em;
 }
 
+.bigger-text-1-2 {
+    font-size : 1.2em;
+}
+
 .h-padding-6 {
     padding-left : 6px;
     padding-right : 6px;
@@ -163,4 +167,8 @@
 .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.resize-v {
+    resize: vertical;
 }

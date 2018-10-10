@@ -1,7 +1,10 @@
 package io.duru.projects.sterling.controller.web.faq;
 
+import io.duru.projects.sterling.exception.ApplicationException;
+import io.duru.projects.sterling.exception.EntityPersistenceException;
 import io.duru.projects.sterling.model.FAQ;
 import io.duru.projects.sterling.service.faq.FAQService;
+import io.duru.projects.sterling.util.AppLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,26 @@ public class FAQWebController {
         model.addAttribute("faqs", faqs);
 
         return "faq/index";
+    }
+
+
+    @RequestMapping(path = "/add", method = RequestMethod.GET)
+    public String showAddFAQ(Model model) {
+        model.addAttribute("faq", new FAQ());
+        return "faq/add";
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String addFAQ(FAQ faq) throws ApplicationException {
+        try {
+            faqService.saveFAQ(faq);
+        }
+        catch (EntityPersistenceException e) {
+            AppLogger.error(e);
+        }
+
+        return "redirect:/faq";
     }
 
 

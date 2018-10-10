@@ -43,3 +43,20 @@ gulp.task('compress-partner', function() {
         .pipe(uglify())
         .pipe(gulp.dest('./js/app/partner/'))
 });
+
+
+gulp.task('compress-faq', function() {
+    gulp.src(
+        vendorJSFiles.concat([
+            'js/app/main.js',
+            'js/app/util.js',
+            'js/app/const.js',
+            'js/app/web.js',
+            'js/app/faq/faq_list.js'
+        ]))
+        .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./js/app/faq/'))
+});
+
+

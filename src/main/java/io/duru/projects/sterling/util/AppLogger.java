@@ -16,4 +16,14 @@ public class AppLogger {
     }
 
 
+    public static void error(Throwable throwable) {
+        logger.log(Level.SEVERE, throwable.getMessage(), throwable);
+    }
+
+
+    public static void error(Throwable throwable, String msg) {
+        logger.log(Level.SEVERE, msg, throwable);
+    }
+
+
 }

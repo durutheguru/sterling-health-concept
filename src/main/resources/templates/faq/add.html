@@ -6,15 +6,15 @@
     <meta name="author" content="Julian Duru">
     <meta http-equiv="Cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="timestamp"/>
-    <title>Sterling Health Concept - FAQs</title>
+    <title>Sterling Health Concept - Add FAQ</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/main.css" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script th:src="@{/js/html5shiv.js}"></script>
+    <script th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -64,39 +64,26 @@
     <section id="main-content" class="h-padding-15">
 
         <!--<div class="col-md-2">-->
-            <!--<div class="iconic-input right">-->
-                <!--<i class="fa fa-search"></i>-->
-                <!--<input type="text" class="form-control" placeholder="Search">-->
-            <!--</div>-->
+        <!--<div class="iconic-input right">-->
+        <!--<i class="fa fa-search"></i>-->
+        <!--<input type="text" class="form-control" placeholder="Search">-->
+        <!--</div>-->
         <!--</div>-->
 
         <div class="col-md-10 col-md-offset-1">
-            <a th:href="@{/faq/add}" class="btn btn-link pull-right">Add FAQ</a>
-            <h4 style="position:relative;top:-10px;">FAQs</h4>
+            <h4 style="position:relative;top:-10px;">Add FAQ</h4>
 
-            <div class="panel-group" id="accordion1">
-                <div class="" th:each="faq, status : ${faqs}" th:class="${status.odd} ? 'panel panel-warning faq-item' : 'panel panel-default faq-item'">
-                    <div class="panel-heading">
-                        <!--<button type="button" class="btn btn-round btn-link pull-right"-->
-                                <!--style="position:relative;top:-5px;"-->
-                                <!--th:attr="click='deleteFAQ(' + ${faq.id} + ')'">-->
-                            <!--<i class="fa fa-trash-o"></i>-->
-                        <!--</button>-->
-                        <h4 class="panel-title">
-                            <a th:href="'faq.html#accordion1_' + ${status.index}"
-                               data-parent="#accordion1" data-toggle="collapse"
-                               class="accordion-toggle bigger-text-1-2">
-                                <span th:text="${status.index + 1}"></span>. <span th:text="${faq.question}"></span>
-                            </a>
-                        </h4>
-                    </div>
-                    <div class="panel-collapse collapse" th:attr="id='accordion1_'+${status.index}" id="accordion1_8">
-                        <div class="panel-body">
-                            <p th:text="${faq.answer}"></p>
-                        </div>
-                    </div>
+            <form role="form" th:object="${faq}" th:action="@{/faq}" method="post">
+                <div class="form-group">
+                    <label for="faqQuestion">Question</label>
+                    <input type="text" class="form-control" id="faqQuestion" placeholder="Enter Question" th:field="*{question}" >
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="faqAnswer">Password</label>
+                    <textarea class="form-control resize-v" id="faqAnswer" placeholder="Enter Answer" th:field="*{answer}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
         </div>
 
     </section>
@@ -359,7 +346,7 @@
 </script>
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="js/app/faq/app.min.js"></script>
+<script th:src="@{js/app/faq/app.min.js}"></script>
 
 <script>
 
@@ -386,3 +373,4 @@
 
 </body>
 </html>
+
