@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * created by dduru on 27/09/2018
@@ -43,6 +44,18 @@ public class PartnerService {
         return SearchImpl.init(key, components).execute();
     }
 
+
+    public Optional<Partner> featuredPartner() {
+        List<Partner> partners = getPartners();
+        int count = partners.size();
+
+        if (count < 1) {
+            return Optional.empty();
+        }
+
+        int randomIndex = components.random.nextInt(count);
+        return Optional.of(partners.get(randomIndex));
+    }
 
     public UploadResult uploadPartners(MultipartFile multipartFile) throws PartnerSetupException {
         return UploadImpl.init(multipartFile, components).execute();

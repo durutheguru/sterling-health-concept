@@ -2362,8 +2362,6 @@ ul.inbox-pagination li {
 .profile-nav .user-heading a img {
     width: 112px;
     height: 112px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
 }
 
 .profile-nav .user-heading h1 {

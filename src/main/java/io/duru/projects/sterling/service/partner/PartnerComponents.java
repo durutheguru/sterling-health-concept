@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * created by dduru on 27/09/2018
@@ -32,5 +33,7 @@ public class PartnerComponents {
 
     @Autowired
     public List<SearchTypeHandler> searchTypeHandlers;
+
+    public Random random = new Random(System.currentTimeMillis());
 
 }
