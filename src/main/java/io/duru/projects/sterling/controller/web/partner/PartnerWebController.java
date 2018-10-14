@@ -42,7 +42,7 @@ public class PartnerWebController {
             return showPartnerDetails(partner, model);
         }
 
-        return "partner/index";
+        return "redirect:/partner";
     }
 
 

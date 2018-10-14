@@ -36,7 +36,7 @@ public class PartnerService {
 
 
     public Partner getPartner(Long id) {
-        return components.partnerRepository.getOne(id);
+        return components.partnerRepository.findById(id).orElse(null);
     }
 
 
