@@ -3,10 +3,8 @@ package io.duru.projects.sterling.controller.web.partner;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.duru.projects.sterling.apimodel.ApiContext;
 import io.duru.projects.sterling.apimodel.partner.PartnerApiModel;
-import io.duru.projects.sterling.exception.PartnerSetupException;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.service.partner.PartnerService;
-import io.duru.projects.sterling.util.AppLogger;
 import io.duru.projects.sterling.util.JSONUtil;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +68,6 @@ public class PartnerWebController {
         model.addAttribute("partner", new PartnerApiModel(partner, context));
         model.addAttribute("partnerJson", JSONUtil.stringify(Hibernate.unproxy(partner)));
     }
+
 
 }

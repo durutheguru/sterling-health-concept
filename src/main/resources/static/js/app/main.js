@@ -25,7 +25,7 @@ var selectedConfigName = "DEV";
         new EnvConfig({
             name : "DEV",
             debug : true,
-            url : "http://localhost:8080"
+            url : "http://96.126.116.70"
         }),
 
         new EnvConfig({
