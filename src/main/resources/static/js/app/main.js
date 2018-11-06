@@ -7,7 +7,6 @@ var rootObject = {
 };
 
 
-//TODO: load this from injected profile
 var selectedConfigName = "DEV";
 
 
@@ -25,11 +24,13 @@ var selectedConfigName = "DEV";
         new EnvConfig({
             name : "DEV",
             debug : true,
-            url : "http://96.126.116.70"
+            url : "http://localhost:8080"
         }),
 
         new EnvConfig({
-            name : "PROD"
+            name : "PROD",
+            debug : false,
+            url : "http://96.126.116.70"
         })
     ];
 

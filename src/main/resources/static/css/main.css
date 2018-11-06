@@ -108,6 +108,21 @@
     border-bottom : 1px solid #DDD;
 }
 
+.side-tab-container {
+    padding-bottom: 100px;
+}
+
+.edit-tab-item {
+    padding : 15px 0 15px 5px;
+    border-bottom: 1px solid #EFEFEF;
+    cursor: pointer;
+    font-size: 1.4em;
+}
+
+.edit-tab-item:hover, .selected-edit-tab-item {
+    background: #C9F5FF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
+}
 
 .red {
     color : #EF6F66;

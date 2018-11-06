@@ -13,7 +13,9 @@
 
             PARTNER_CLEAR_SEARCH : 'partner.search.clear',
 
-            PARTNER_UPDATE_RESULT_MODAL : 'partner.update.modal.data'
+            PARTNER_UPDATE_RESULT_MODAL : 'partner.update.modal.data',
+
+            PARTNER_EDIT_DETAILS_NEW_TAB : 'partner.edit_details.tab.new'
 
         },
 

@@ -6,7 +6,7 @@
     <meta name="author" content="Julian Duru">
     <meta http-equiv="Cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="timestamp"/>
-    <title th:text="'Sterling Health Concept - ' + ${partner.name}"></title>
+    <title th:text="'Sterling PharmDirect - ' + ${partner.name}"></title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
@@ -36,7 +36,8 @@
             <i class="fa fa-stethoscope"></i>
         </div>
         <!--logo start-->
-        <a href="/" class="logo">STERLING <span>HEALTH CONCEPT</span></a>
+        <a href="/" class="logo"><img src="/img/sterling-bank-logo.jpg" width="100px" height="60px" style="position:relative;top:-10px;" />
+            <span>PharmDirect</span></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -286,11 +287,32 @@
     <section id="main-content">
 
         <div class="row h-padding-15">
-            <aside class="profile-info col-lg-8 col-lg-offset-2">
+            <aside class="profile-info col-lg-3" id="partner-data-edit-container">
+                <section class="panel shadowed-s tasks-widget side-tab-container">
+                    <div class="panel-body bio-graph-info h-padding-15">
+                        <div class="task-content">
+
+                            <ul class="task-list">
+                                <li class="edit-tab-item" v-for="tab in tabs" v-bind:class="{ 'selected-edit-tab-item': selectedTab.key==tab.key }">
+                                    <div class="task-title" @click="setSelectedTab(tab)">
+                                        <span class="task-title-sp" v-text="tab.text"></span>
+                                        <div class="pull-right hidden-phone">
+
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <aside class="profile-info col-lg-9">
                 <section class="panel shadowed-s">
                     <div class="panel-body bio-graph-info v-padding-15 h-padding-15">
                         <h1 class="info-msg"> Profile Info</h1>
-                        <form id="edit-partner-form" v-if="partnerInjected" class="form-horizontal" role="form">
+                        <form id="edit-partner-form" v-if="partnerInjected&&selectedTab.key=='BASIC_DETAILS'" class="form-horizontal" role="form">
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Name</label>
                                 <div class="col-lg-10">

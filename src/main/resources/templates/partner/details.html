@@ -6,7 +6,7 @@
     <meta name="author" content="Julian Duru">
     <meta http-equiv="Cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="timestamp"/>
-    <title th:text="'Sterling Health Concept - ' + ${partner.name}"></title>
+    <title th:text="'Sterling PharmDirect - ' + ${partner.name}"></title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
@@ -36,7 +36,8 @@
             <i class="fa fa-stethoscope"></i>
         </div>
         <!--logo start-->
-        <a href="/" class="logo">STERLING <span>HEALTH CONCEPT</span></a>
+        <a href="/" class="logo"><img src="/img/sterling-bank-logo.jpg" width="100px" height="60px" style="position:relative;top:-10px;" />
+            <span>PharmDirect</span></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -142,7 +143,7 @@
                         </li>
                         <li>
                             <a href="index.html#">
-                                <span class="photo"><img alt="avatar" th:src="@{/img/avatar-mini.jpg}"></span>
+                                <span class="photo"><img alt="avatar" src="img/avatar-mini.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jonathan Smith</span>
                                     <span class="time">Just now</span>
@@ -154,7 +155,7 @@
                         </li>
                         <li>
                             <a href="index.html#">
-                                <span class="photo"><img alt="avatar" th:src="@{/img/avatar-mini2.jpg}"></span>
+                                <span class="photo"><img alt="avatar" src="img/avatar-mini2.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jhon Doe</span>
                                     <span class="time">10 mins</span>
@@ -166,7 +167,7 @@
                         </li>
                         <li>
                             <a href="index.html#">
-                                <span class="photo"><img alt="avatar" th:src="@{/img/avatar-mini3.jpg}"></span>
+                                <span class="photo"><img alt="avatar" src="img/avatar-mini3.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jason Stathum</span>
                                     <span class="time">3 hrs</span>
@@ -178,7 +179,7 @@
                         </li>
                         <li>
                             <a href="index.html#">
-                                <span class="photo"><img alt="avatar" th:src="@{/img/avatar-mini4.jpg}"></span>
+                                <span class="photo"><img alt="avatar" src="img/avatar-mini4.jpg"></span>
                                     <span class="subject">
                                     <span class="from">Jondi Rose</span>
                                     <span class="time">Just now</span>
@@ -261,7 +262,7 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                        <img alt="" th:src="@{/img/avatar1_small.jpg}">
+                        <img alt="" src="img/avatar1_small.jpg">
                         <span class="username">Jhon Doue</span>
                         <b class="caret"></b>
                     </a>

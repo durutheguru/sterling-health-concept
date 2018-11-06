@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Julian Duru">
     <meta http-equiv="Cache-control" content="no-cache"/>
     <meta http-equiv="expires" content="timestamp"/>
-    <title>Sterling Health Concept - Partner Listing</title>
+    <title>Sterling PharmDirect - Partner Listing</title>
 
     <link href="css/main.css" rel="stylesheet"/>
 
@@ -14,6 +14,15 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.inject = {
+        };
+        /*]]>*/
+    </script>
+
 </head>
 
 <body>
@@ -24,7 +33,8 @@
             <i class="fa fa-stethoscope"></i>
         </div>
         <!--logo start-->
-        <a href="/" class="logo">STERLING <span>HEALTH CONCEPT</span></a>
+        <a href="/" class="logo"><img src="/img/sterling-bank-logo.jpg" width="100px" height="60px" style="position:relative;top:-10px;" />
+            <span>PharmDirect</span></a>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
