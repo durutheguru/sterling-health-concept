@@ -53,7 +53,7 @@ public class PartnerService {
             return Optional.empty();
         }
 
-        int randomIndex = components.random.nextInt(count);
+        int randomIndex = 1 + components.random.nextInt(count);
         return Optional.of(partners.get(randomIndex));
     }
 
