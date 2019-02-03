@@ -55,7 +55,8 @@ public class SetupImpl {
             partner.getPrimaryLocation().setState(existingState.get());
         }
         else {
-            throw new PartnerSetupException(String.format("State of Location '%s' not found", state.getName()));
+            state = components.stateRepository.save(state);
+            partner.getPrimaryLocation().setState(state);
         }
     }
 

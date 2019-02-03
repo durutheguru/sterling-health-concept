@@ -4,10 +4,12 @@ import io.duru.projects.sterling.model.Location;
 import io.duru.projects.sterling.model.Partner;
 import io.duru.projects.sterling.model.PartnerProfile;
 import io.duru.projects.sterling.model.State;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -21,6 +23,8 @@ public class PartnerServiceTest {
     private PartnerService partnerService;
 
 
+
+    @Sql("/test-scripts/init-partner-service-test.sql")
     @Test
     public void test_adding_new_partner() throws Exception {
         partnerService.savePartner(buildNewPartner());

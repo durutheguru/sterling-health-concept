@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+#  nginx:
+#    container_name: nginx_health_concept
+#    restart: always
+#    image: nginx:1.13
+#    ports:
+#    - 80:80
+#    - 443:443
+#    volumes:
+#    - ./nginx/conf.d:/etc/nginx/conf.d
+#    depends_on:
+#    - health_concept
+
+  mysql:
+    container_name: mysql_db
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sterling_health_concept
+      MYSQL_ROOT_HOST: "%"
+    restart: always
+
+  health_concept:
+    restart: always
+    build: .
+    working_dir: /health_concept
+    volumes:
+    - ./target:/health_concept
+    ports:
+    - 8080:8080
+    command: >
+      sh -c "java -jar health-concept-0.0.1-SNAPSHOT.jar"
+    depends_on:
+    - mysql
+
+
+
